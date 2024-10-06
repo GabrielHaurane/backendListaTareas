@@ -4,6 +4,8 @@ import cors from 'cors'
 import path from "path";
 import {fileURLToPath} from 'url'
 import './src/database/databaseConnection.js'
+import tareaRouter from "./src/routes/Tarea.routes.js";
+
 const app = express();
 // 1
 app.set("port", process.env.PORT || 4000)
@@ -21,7 +23,5 @@ const __dirname = path.dirname(__filename)
 // console.log(__dirname)
 app.use(express.static(path.join(__dirname,'/public')))
 
-
-app.get('/tareas', (req,res)=>{
-res.send('desde bd')
-})
+// 3
+app.use('/api',tareaRouter)

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { borrarTarea, crearTarea, editarTarea, listarTareas, obtenerTareas } from "../controllers/tarea.controllers";
+import { borrarTarea, crearTarea, editarTarea, listarTareas, obtenerTareas } from "../controllers/tarea.controllers.js";
 
 const tareaRouter = Router();
 tareaRouter.route('/tarea').post(crearTarea).get(listarTareas)
