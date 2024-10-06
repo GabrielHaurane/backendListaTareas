@@ -1,4 +1,15 @@
 import Tarea from "../database/model/Tarea.js";
+export const listarTareas = async (req, res) => {
+    try {
+        const arrayTareas = await Tarea.find()
+        res.status(200).json(arrayTareas)
+    } catch (error) {
+        console.error(error)
+        res.status(404).json({
+            mensaje: "Ocurrio un error, no se encontraron las tareas"
+        })
+    }
+}
 
 export const crearTarea = async (req, res) => {
     try {
@@ -14,33 +25,7 @@ export const crearTarea = async (req, res) => {
         })
     }
 }
-export const listarTareas = async (req, res) => {
-    try {
-        const arrayTareas = await Tarea.find()
-        res.status(200).json(arrayTareas)
-    } catch (error) {
-        console.error(error)
-        res.status(404).json({
-            mensaje: "Ocurrio un error, no se encontraron las tareas"
-        })
-    }
-}
-export const obtenerTareas = async (req, res) => {
-    try {
-        const tareaBuscada = await Tarea.findById(req.params.id)
-        if (!tareaBuscada) {
-        return res.status(404).json({
-            mensaje: "la tarea no fue encontrada"
-        })
-        }
-        res.status(200).json(tareaBuscada)
-    } catch (error) {
-        console.error(error)
-        res.status(500).json({
-            mensaje: "Ocurrio un error, no se pudo obtener la tarea"
-        })
-    }
-}
+
 export const borrarTarea = async (req, res) => {
     try {
         req.params.id
