@@ -12,6 +12,7 @@ export const listarTareas = async (req, res) => {
 }
 
 export const crearTarea = async (req, res) => {
+    console.info(req.body)
     try {
         const tareaNueva = new Tarea(req.body)
         await tareaNueva.save()
@@ -28,7 +29,7 @@ export const crearTarea = async (req, res) => {
 
 export const borrarTarea = async (req, res) => {
     try {
-        req.params.id
+        
         const tareaBuscada = await Tarea.findById(req.params.id)
         if (!tareaBuscada) {
             return res.status(404).json({
